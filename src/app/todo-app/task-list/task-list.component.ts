@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Task } from '../task';
+import { Task } from '../../models/task';
 import { TaskServiceService } from '../task-service.service';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -9,16 +9,20 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
-  // @Input() userId: string;
   tasks: Task[];
 
   constructor(private taskService: TaskServiceService) { }
 
   ngOnInit() {
-    this.taskService.getUserTasks(2).subscribe(tasks => {
+   
+    this.taskService.getUserTasks(parseInt(sessionStorage.getItem('userId'))).subscribe(tasks => {
       console.log(tasks);
       this.tasks = tasks;
     })
+  }
+
+  removeTask(taskId:number){
+    this.taskService.removeTask(taskId);
   }
 
 }

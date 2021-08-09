@@ -1,12 +1,17 @@
 <div class="container">
     <h4 class="text-center">Login Form</h4>
-      <div class="form-group">
-            <label for="inputUsername">Username:</label>
-            <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Enter Username" [(ngModel)]="username">
-        </div>
-        <div class="form-group">
-            <label for="inputPassword">Password:</label>
-            <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password" [(ngModel)]="password">
-        </div>
-        <button type="button" class="btn btn-primary-outline pull-right" (click)="checkLogin();">Login</button>
+    <div *ngIf="showErrorMessage">
+        <div class="p-3 mb-2 bg-danger text-white">Invalid username and password Please try again</div>
+    </div>
+    <div class="form-group">
+        <label for="inputUsername">Username:</label>
+        <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Enter Username"
+            [(ngModel)]="username">
+    </div>
+    <div class="form-group">
+        <label for="inputPassword">Password:</label>
+        <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password"
+            [(ngModel)]="password">
+    </div>
+    <button type="button" class="btn btn-primary-outline pull-right" (click)="checkLogin();">Login</button>
 </div>

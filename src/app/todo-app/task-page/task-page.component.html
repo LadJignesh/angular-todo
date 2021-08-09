@@ -1,7 +1,47 @@
 <nav class="navbar navbar-light bg-light justify-content-between">
     <a class="navbar-brand" href="/">ToDo App - Logged in navbar</a>
 
-    <button class="btn btn-success">Add Task</button>
+    <button class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Add Task</button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)">
+                        {{ model | json }}
+                        <div class="form-group">
+                            <label for="name">Task</label>
+                            <input type="text" class="form-control" id="task" required [(ngModel)]="model.task"
+                                name="task">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <input type="text" class="form-control" id="description" [(ngModel)]="model.description"
+                                name="description">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Is Completed</label>
+                            <input type="checkbox" class="form-control" id="taskCompleted" [(ngModel)]="model.taskCompleted"
+                                name="taskCompleted">
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Submit</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <span>{{username}}</span>
     <a href="/">Logout</a>
 </nav>
 <app-task-list></app-task-list>

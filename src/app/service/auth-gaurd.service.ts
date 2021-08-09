@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +11,11 @@ export class AuthGaurdService {
     private authService: AuthenticationService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.authService.isUserLoggedIn())
+    if (this.authService.isUserLoggedIn()){
       return true;
+    }
 
-    this.router.navigate(['login']);
+    this.router.navigate(['/']);
     return false;
 
   }

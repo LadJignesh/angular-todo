@@ -1,9 +1,8 @@
 export class Task {
-    id: string;
     userId: string;
     task: string;
     description:string;
-    lastUpdate: Date;
+    lastUpdated: number;
     taskCompleted: boolean;
 
 }

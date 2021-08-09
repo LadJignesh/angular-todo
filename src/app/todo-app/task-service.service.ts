@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Task } from '../todo-app/task';
+import { Task } from '../models/task';
 import { Observable } from 'rxjs';
 
 
@@ -24,7 +24,13 @@ export class TaskServiceService {
     return this.http.get<Task[]>(url);
   }
 
-  public save(task: Task) {
-    return this.http.post<Task>(this.tasksUrl, task);
+  save(task: Task, id: number): Observable<void> {
+    const url = `${this.tasksUrl}/${id}`;
+    return this.http.post<void>(url, task, this.httpOptions);
   }
+
+ removeTask(taskId:number): Observable<void> {
+  const url = `${this.tasksUrl}/${taskId}`;
+  return this.http.post<void>(url, this.httpOptions);
+}
 }

@@ -1,4 +1,5 @@
 <div class="container">
+    {{userId}} i am here
     <table class="table">
         <thead>
             <tr>
@@ -11,11 +12,12 @@
         </thead>
         <tbody>
             <tr *ngFor="let task of tasks; let i= index">
-                <td><input type="checkbox" [checked]="task.taskCompleted==false" disabled></td>
+                <td><input type="checkbox" [checked]="task.taskCompleted==true" disabled></td>
                 <td>{{task.task}}</td>
                 <td>{{task.description}}</td>
-                <td>{{task.lastUpdate}}</td>
-                <td><button class="btn btn-primary">Edit</button></td>
+                <td>{{task.lastUpdated}}</td>
+                <td>
+                    <button class="btn btn-primary" (click)="removeTask(task.taskId)">Remove</button></td>
             </tr>
         </tbody>
     </table>
